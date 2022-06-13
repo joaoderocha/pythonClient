@@ -22,9 +22,10 @@ class TrainHorovod(Train):
                               model_name: str,
                               parent_name: str,
                               parameters: dict,
-                              description: str = "",
-                              compiling_code: str = "",
+                              method_name: str = "",
                               monitoring_path: str = None,
+                              description: str = "",
+                              compile_code: str = None,
                               pretty_response: bool = False) -> \
             Union[dict, str]:
         """
@@ -47,7 +48,7 @@ class TrainHorovod(Train):
             self.__PARENT_NAME_FIELD: parent_name,
             self.__ClASS_PARAMETERS_FIELD: parameters,
             self.__DESCRIPTION_FIELD: description,
-            self.__COMPILE_CODE: compiling_code,
+            self.__COMPILE_CODE: compile_code,
             self.__MONITORING_PATH: monitoring_path,
         }
 
@@ -57,14 +58,15 @@ class TrainHorovod(Train):
         return self.__response_treat.treatment(response, pretty_response)
 
     def create_training_sync(self,
-                             name: str,
-                             model_name: str,
-                             parent_name: str,
-                             parameters: dict,
-                             description: str = "",
-                             compiling_code: str = "",
-                             monitoring_path: str = None,
-                             pretty_response: bool = False) -> \
+                              name: str,
+                              model_name: str,
+                              parent_name: str,
+                              parameters: dict,
+                              method_name: str = "",
+                              monitoring_path: str = None,
+                              description: str = "",
+                              compile_code: str = None,
+                              pretty_response: bool = False) -> \
             Union[dict, str]:
         """
         description: This method is responsible to train models in sync mode
@@ -85,7 +87,7 @@ class TrainHorovod(Train):
             self.__PARENT_NAME_FIELD: parent_name,
             self.__ClASS_PARAMETERS_FIELD: parameters,
             self.__DESCRIPTION_FIELD: description,
-            self.__COMPILE_CODE: compiling_code,
+            self.__COMPILE_CODE: compile_code,
             self.__MONITORING_PATH: monitoring_path,
         }
 

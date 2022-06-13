@@ -12,6 +12,8 @@ class Train:
     __ClASS_PARAMETERS_FIELD = "methodParameters"
     __NAME_FIELD = "name"
     __DESCRIPTION_FIELD = "description"
+    __MONITORING_FIELD = "monitoringPath"
+    __COMPILING_CODE = "compile_code"
 
     def __init__(self, cluster_ip: str, api_path: str):
         self.__service_url = f'{cluster_ip}{api_path}'
@@ -27,6 +29,8 @@ class Train:
                              method_name: str,
                              parameters: dict,
                              description: str = "",
+                             monitoring_path: str = None,
+                             compile_code: str = None,
                              pretty_response: bool = False) -> \
             Union[dict, str]:
         """
@@ -42,13 +46,17 @@ class Train:
         return: A JSON object with an error or warning message or a URL
         indicating the correct operation.
         """
+
         request_body = {
             self.__NAME_FIELD: name,
             self.__MODEL_NAME_FIELD: model_name,
             self.__PARENT_NAME_FIELD: parent_name,
             self.__METHOD_NAME_FIELD: method_name,
             self.__ClASS_PARAMETERS_FIELD: parameters,
-            self.__DESCRIPTION_FIELD: description}
+            self.__DESCRIPTION_FIELD: description,
+            self.__MONITORING_FIELD: monitoring_path,
+            self.__COMPILING_CODE: compile_code,
+        }
 
         request_url = self.__service_url
 
@@ -63,7 +71,9 @@ class Train:
                               parent_name: str,
                               method_name: str,
                               parameters: dict,
+                              monitoring_path: str = None,
                               description: str = "",
+                              compile_code: str = None,
                               pretty_response: bool = False) -> \
             Union[dict, str]:
         """
@@ -86,11 +96,14 @@ class Train:
             self.__PARENT_NAME_FIELD: parent_name,
             self.__METHOD_NAME_FIELD: method_name,
             self.__ClASS_PARAMETERS_FIELD: parameters,
-            self.__DESCRIPTION_FIELD: description}
+            self.__DESCRIPTION_FIELD: description,
+            self.__MONITORING_FIELD: monitoring_path,
+            self.__COMPILING_CODE: compile_code,
+        }
 
         request_url = self.__service_url
-
         response = requests.post(url=request_url, json=request_body)
+
         return self.__response_treat.treatment(response, pretty_response)
 
     def search_all_trainings(self, pretty_response: bool = False) \
