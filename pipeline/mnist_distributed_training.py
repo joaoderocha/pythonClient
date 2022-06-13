@@ -5,7 +5,7 @@ from learning_orchestra_client.train.horovod import TrainHorovod
 from learning_orchestra_client.predict.tensorflow import PredictTensorflow
 from learning_orchestra_client.evaluate.tensorflow import EvaluateTensorflow
 
-CLUSTER_IP = "http://34.125.36.237"
+CLUSTER_IP = "http://34.125.137.76"
 
 dataset_generic = DatasetGeneric(CLUSTER_IP)
 dataset_generic.insert_dataset_async(
