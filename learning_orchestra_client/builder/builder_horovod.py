@@ -6,10 +6,10 @@ from typing import Union
 
 
 class BuilderHorovod:
-    __BUILDER_NAME = 'name',
+    __BUILDER_NAME = 'name'
     __DESCRIPTION_NAME = 'description'
-    __MODELING_CODE_NAME = 'code',
-    __PARAMETERS = 'parameters'
+    __MODELING_CODE_NAME = 'code'
+    __PARAMETERS = 'methodParameters'
 
     def __init__(self, cluster_ip: str):
         self.__api_path = "/api/learningOrchestra/v1/builder/horovod"
@@ -19,7 +19,7 @@ class BuilderHorovod:
         self.__entity_reader = EntityReader(self.__service_url)
         self.__observer = Observer(self.__cluster_ip)
 
-    def run_horovod_sync(self, builder_name: str, modeling_code: str, parameters: dict = dict({}),
+    def run_horovod_sync(self, builder_name: str, modeling_code: str, parameters: dict = {},
                          description: str = '',
                          pretty_response: bool = False) -> \
             Union[dict, str]:
@@ -53,7 +53,7 @@ class BuilderHorovod:
 
         return self.__response_treat.treatment(response, pretty_response)
 
-    def run_horovod_async(self, builder_name: str, modeling_code: str, parameters: dict = dict({}),
+    def run_horovod_async(self, builder_name: str, modeling_code: str, parameters: dict = {},
                           description: str = '',
                           pretty_response: bool = False) -> Union[dict, str]:
         """

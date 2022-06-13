@@ -84,7 +84,7 @@ def train(num_epochs):
 """
 
 if __name__ == '__main__':
-    CLUSTER_IP = "http://34.125.36.237"
+    CLUSTER_IP = "http://34.125.137.76"
     builder = BuilderHorovod(CLUSTER_IP)
     builder.run_horovod_sync(
         'my builder',
